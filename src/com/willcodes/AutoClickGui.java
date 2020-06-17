@@ -17,8 +17,8 @@ public class AutoClickGui {
     private static final int sliderMax = 20;
     private static final int sliderInit = 10;
     private int rate = 0;
-    private int rateInMs = rate * 1000;
     private boolean on = false;
+    private int numOfThreads = 0;
 
     private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     private final JSlider slider = new JSlider(JSlider.HORIZONTAL, sliderMin, sliderMax, sliderInit);
@@ -27,8 +27,20 @@ public class AutoClickGui {
     private final JButton startAuto = new JButton("Start or click s");
     private final JButton stopAuto = new JButton("Stop or click o");
 
+
     public AutoClickGui() throws AWTException, InterruptedException {
         InitializeUI();
+    }
+
+    public void sliderListener() {
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                rate = slider.getValue();
+                System.out.println("Rate in seconds: " + rate);
+                System.out.println("Rate in ms: " + rate * 1000);
+            }
+        });
     }
 
     public void InitializeUI() throws InterruptedException {
@@ -38,6 +50,41 @@ public class AutoClickGui {
         slider.setPaintLabels(true);
         fonts();
         sliderListener();
+        startAuto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                on = true;
+                startAuto.setEnabled(false);
+                stopAuto.setEnabled(true);
+                numOfThreads += 1;
+                if (numOfThreads < 1) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while (on) {
+                                try {
+                                    click();
+                                    System.out.println("hi");
+                                    TimeUnit.SECONDS.sleep(rate * 1000);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        stopAuto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                on = false;
+                startAuto.setEnabled(true);
+                stopAuto.setEnabled(false);
+            }
+        });
         panel.add(slider);
         panel.add(startAuto);
         panel.add(stopAuto);
@@ -55,46 +102,17 @@ public class AutoClickGui {
         stopAuto.setFont(new Font("Times new Roman", Font.PLAIN, 15));
     }
 
-    public void sliderListener() {
-        slider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                rate = slider.getValue();
-            }
-        });
-    }
-
-    public void buttonListeners() {
-        startAuto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Robot robot = new Robot();
-                            Thread.sleep(rateInMs);
-                            while (on) {
-                                robot.mousePress(InputEvent.BUTTON1_MASK);
-                                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                            }
-
-                        } catch (AWTException | InterruptedException awtException) {
-                            awtException.printStackTrace();
-                        }
-                    }
-                }).start();
-
-            }
-        });
 
 
-        stopAuto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                on = false;
-            }
-        });
+
+    public void click() {
+        try{
+            Robot robot = new Robot();
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
