@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 public class AutoClickGui {
 
     private static final int sliderMin = 0;
-    private static final int sliderMax = 20;
+    private static final int sliderMax = 10;
     private static final int sliderInit = 10;
-    private int rate = 10;
+    private int rate = 5;
     private boolean clickerActive = false;
     private boolean threadStarted = false;
 
@@ -22,8 +22,9 @@ public class AutoClickGui {
     private final JSlider slider = new JSlider(JSlider.HORIZONTAL, sliderMin, sliderMax, sliderInit);
     private final JPanel panel = new JPanel();
     private final JFrame frame = new JFrame("Wills auto clicker");
-    private final JButton startAuto = new JButton("Start or click s");
-    private final JButton stopAuto = new JButton("Stop or click o");
+    private final JButton startAuto = new JButton("Start or click");
+    private final JButton stopAuto = new JButton("Stop or click");
+    private final JTextField rateInMs = new JTextField("Clicks every: " + rate + "ms", 11);
     private final Robot robot = new Robot();
 
 
@@ -36,8 +37,10 @@ public class AutoClickGui {
             @Override
             public void stateChanged(ChangeEvent e) {
                 rate = slider.getValue();
-                System.out.println("Rate in seconds: " + rate);
-                System.out.println("Rate in ms: " + rate * 1000);
+                if (rate == 0) {
+                    rate = 1;
+                }
+                rateInMs.setText("Clicks every : " + rate + "ms");
             }
         });
     }
@@ -62,7 +65,10 @@ public class AutoClickGui {
                         while (clickerActive) {
                             try {
                                 click();
-                                TimeUnit.SECONDS.sleep(rate);
+                                if (rate == 0) {
+                                    rate = 1;
+                                }
+                                TimeUnit.MILLISECONDS.sleep(rate);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -84,6 +90,11 @@ public class AutoClickGui {
                 stopAuto.setEnabled(false);
             }
         });
+
+        rateInMs.setToolTipText("Shows the click intervals");
+        startAuto.setToolTipText("Start the auto clicker");
+        stopAuto.setToolTipText("Stop the auto clicker");
+        panel.add(rateInMs);
         panel.add(slider);
         panel.add(startAuto);
         panel.add(stopAuto);
