@@ -28,7 +28,7 @@ public class AutoClickGui {
     private final Robot robot = new Robot();
 
 
-    public AutoClickGui() throws AWTException, InterruptedException {
+    public AutoClickGui() throws AWTException {
         InitializeUI();
     }
 
@@ -45,7 +45,7 @@ public class AutoClickGui {
         });
     }
 
-    public void InitializeUI() throws InterruptedException {
+    public void InitializeUI() {
         slider.setMinorTickSpacing(1);
         slider.setMajorTickSpacing(5);
         slider.setPaintTicks(true);
@@ -58,6 +58,7 @@ public class AutoClickGui {
                 startAuto.setEnabled(false);
                 stopAuto.setEnabled(true);
                 clickerActive = true;
+                slider.setEnabled(false);
                 Thread clickclick = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -88,12 +89,14 @@ public class AutoClickGui {
                 clickerActive = false;
                 startAuto.setEnabled(true);
                 stopAuto.setEnabled(false);
+                slider.setEnabled(true);
             }
         });
 
         rateInMs.setToolTipText("Shows the click intervals");
         startAuto.setToolTipText("Start the auto clicker");
         stopAuto.setToolTipText("Stop the auto clicker");
+        rateInMs.setEditable(false);
         panel.add(rateInMs);
         panel.add(slider);
         panel.add(startAuto);
@@ -111,6 +114,7 @@ public class AutoClickGui {
         frame.setFont(new Font("Times new Roman", Font.BOLD, 18));
         startAuto.setFont(new Font("Times new Roman", Font.PLAIN, 15));
         stopAuto.setFont(new Font("Times new Roman", Font.PLAIN, 15));
+        rateInMs.setFont(new Font("Times new Roman", Font.PLAIN, 15));
     }
 
 
@@ -127,7 +131,7 @@ public class AutoClickGui {
     }
 
 
-    public static void main(String[] args) throws AWTException, InterruptedException {
+    public static void main(String[] args) throws AWTException {
         new AutoClickGui();
     }
 }
