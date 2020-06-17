@@ -124,8 +124,6 @@ public class AutoClickGui {
     }
 
 
-
-
     public void click() {
         PointerInfo a = MouseInfo.getPointerInfo();
         Point b = a.getLocation();
