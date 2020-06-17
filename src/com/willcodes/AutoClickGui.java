@@ -4,16 +4,14 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
+import java.awt.event.*;
 import java.util.concurrent.TimeUnit;
 
 public class AutoClickGui {
 
     private static final int sliderMin = 0;
     private static final int sliderMax = 10;
-    private static final int sliderInit = 10;
+    private static final int sliderInit = 5;
     private int rate = 5;
     private boolean clickerActive = false;
     private boolean threadStarted = false;
