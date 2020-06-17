@@ -108,6 +108,7 @@ public class AutoClickGui {
         panel.add(stopAuto);
         frame.setContentPane(panel);
         frame.setAlwaysOnTop(true);
+        frame.setPreferredSize(new Dimension(212, 166));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
