@@ -10,18 +10,18 @@ import java.util.concurrent.TimeUnit;
 public class AutoClickGui {
 
     private static final int sliderMin = 0;
-    private static final int sliderMax = 10;
-    private static final int sliderInit = 5;
-    private int rate = 5;
+    private static final int sliderMax = 30;
+    private static final int sliderInit = 15;
+    private int rate = 15;
     private boolean clickerActive = false;
     private boolean threadStarted = false;
 
     private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     private final JSlider slider = new JSlider(JSlider.HORIZONTAL, sliderMin, sliderMax, sliderInit);
-    private final JPanel panel = new JPanel();
+    private final JPanel panel = new JPanel(new FlowLayout());
     private final JFrame frame = new JFrame("Wills auto clicker");
-    private final JButton startAuto = new JButton("Start or click");
-    private final JButton stopAuto = new JButton("Stop or click");
+    private final JButton startAuto = new JButton("Start");
+    private final JButton stopAuto = new JButton("Stop");
     private final JTextField rateInMs = new JTextField("Clicks every: " + rate + "ms", 11);
     private final Robot robot = new Robot();
 
@@ -48,6 +48,7 @@ public class AutoClickGui {
         slider.setMajorTickSpacing(5);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
+        slider.setInverted(true);
         fonts();
         sliderListener();
         startAuto.addActionListener(new ActionListener() {
@@ -93,13 +94,19 @@ public class AutoClickGui {
 
         rateInMs.setToolTipText("Shows the click intervals");
         startAuto.setToolTipText("Start the auto clicker");
+        startAuto.setBackground(Color.GREEN);
+        startAuto.setOpaque(true);
         stopAuto.setToolTipText("Stop the auto clicker");
+        stopAuto.setBackground(Color.RED);
+        stopAuto.setOpaque(true);
         rateInMs.setEditable(false);
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        panel.setOpaque(true);
         panel.add(rateInMs);
         panel.add(slider);
         panel.add(startAuto);
         panel.add(stopAuto);
-        frame.add(panel);
+        frame.setContentPane(panel);
         frame.setAlwaysOnTop(true);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,8 +128,8 @@ public class AutoClickGui {
     public void click() {
         PointerInfo a = MouseInfo.getPointerInfo();
         Point b = a.getLocation();
-        int x = b.x;
-        int y = b.y;
+        int x = (int) b.getX();
+        int y = (int) b.getY();
         robot.mouseMove(x, y);
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -130,6 +137,15 @@ public class AutoClickGui {
 
 
     public static void main(String[] args) throws AWTException {
-        new AutoClickGui();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    new AutoClickGui();
+                } catch (AWTException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
