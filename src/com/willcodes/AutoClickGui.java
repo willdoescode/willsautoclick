@@ -1,6 +1,5 @@
 package com.willcodes;
 
-import javax.sound.midi.Soundbank;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -8,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
-import java.awt.image.renderable.RenderableImageProducer;
 import java.util.concurrent.TimeUnit;
 
 public class AutoClickGui {
@@ -16,9 +14,9 @@ public class AutoClickGui {
     private static final int sliderMin = 0;
     private static final int sliderMax = 20;
     private static final int sliderInit = 10;
-    private int rate = 0;
-    private boolean on = false;
-    private int numOfThreads = 0;
+    private int rate = 10;
+    private boolean clickerActive = false;
+    private boolean threadStarted = false;
 
     private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     private final JSlider slider = new JSlider(JSlider.HORIZONTAL, sliderMin, sliderMax, sliderInit);
@@ -26,6 +24,7 @@ public class AutoClickGui {
     private final JFrame frame = new JFrame("Wills auto clicker");
     private final JButton startAuto = new JButton("Start or click s");
     private final JButton stopAuto = new JButton("Stop or click o");
+    private final Robot robot = new Robot();
 
 
     public AutoClickGui() throws AWTException, InterruptedException {
@@ -53,26 +52,26 @@ public class AutoClickGui {
         startAuto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                on = true;
                 startAuto.setEnabled(false);
                 stopAuto.setEnabled(true);
-                numOfThreads += 1;
-                if (numOfThreads < 1) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            while (on) {
-                                try {
-                                    click();
-                                    System.out.println("hi");
-                                    TimeUnit.SECONDS.sleep(rate * 1000);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                clickerActive = true;
+                Thread clickclick = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        threadStarted = true;
+                        while (clickerActive) {
+                            try {
+                                click();
+                                TimeUnit.SECONDS.sleep(rate);
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-
                         }
-                    }).start();
+                        threadStarted = false;
+                        }
+                    });
+                if (!threadStarted) {
+                       clickclick.start();
                 }
             }
         });
@@ -80,7 +79,7 @@ public class AutoClickGui {
         stopAuto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                on = false;
+                clickerActive = false;
                 startAuto.setEnabled(true);
                 stopAuto.setEnabled(false);
             }
@@ -89,8 +88,9 @@ public class AutoClickGui {
         panel.add(startAuto);
         panel.add(stopAuto);
         frame.add(panel);
+        frame.setAlwaysOnTop(true);
         frame.pack();
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
@@ -106,13 +106,13 @@ public class AutoClickGui {
 
 
     public void click() {
-        try{
-            Robot robot = new Robot();
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        PointerInfo a = MouseInfo.getPointerInfo();
+        Point b = a.getLocation();
+        int x = b.x;
+        int y = b.y;
+        robot.mouseMove(x, y);
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 
 
