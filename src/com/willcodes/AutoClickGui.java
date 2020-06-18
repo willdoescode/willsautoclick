@@ -5,6 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
 public class AutoClickGui {
@@ -24,6 +26,13 @@ public class AutoClickGui {
     private final JButton stopAuto = new JButton("Stop");
     private final JTextField rateInMs = new JTextField("Clicks every: " + rate + "ms", 11);
     private final Robot robot = new Robot();
+    private final JMenuBar menuBar = new JMenuBar();
+    private final JMenu about = new JMenu("About");
+    private final JMenu socials = new JMenu("Socials");
+    private final JMenuItem twitter = new JMenuItem("Twitter");
+    private final JMenuItem instagram = new JMenuItem("Insta");
+    private final JMenu otherProjects = new JMenu("Projects");
+    private final JMenuItem github = new JMenuItem("github");
 
 
     public AutoClickGui() throws AWTException {
@@ -92,6 +101,56 @@ public class AutoClickGui {
             }
         });
 
+
+        twitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    URI uri = new URI("https://twitter.com/williamisahuman");
+                    openPage(uri);
+                } catch (URISyntaxException uriSyntaxException) {
+                    uriSyntaxException.printStackTrace();
+                }
+            }
+        });
+
+        instagram.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    URI uri = new URI("https://instagram.com/will1amlane");
+                    openPage(uri);
+                } catch (URISyntaxException uriSyntaxException) {
+                    uriSyntaxException.printStackTrace();
+                }
+            }
+        });
+
+        github.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    URI uri = new URI("https://github.com/pietales");
+                    openPage(uri);
+                } catch (URISyntaxException uriSyntaxException) {
+                    uriSyntaxException.printStackTrace();
+                }
+            }
+        });
+
+        menuBar.setBorderPainted(false);
+        socials.setBackground(Color.DARK_GRAY);
+        otherProjects.add(github);
+        slider.setToolTipText("Change the click delay in ms");
+        socials.add(twitter);
+        socials.add(instagram);
+        socials.setToolTipText("My social media accounts");
+        instagram.setToolTipText("My insta");
+        twitter.setToolTipText("My twitter");
+        otherProjects.setToolTipText("My other coding projects");
+        github.setToolTipText("My github");
+        menuBar.add(socials);
+        menuBar.add(otherProjects);
         rateInMs.setToolTipText("Shows the click intervals");
         startAuto.setToolTipText("Start the auto clicker");
         startAuto.setBackground(Color.GREEN);
@@ -101,14 +160,14 @@ public class AutoClickGui {
         stopAuto.setOpaque(true);
         rateInMs.setEditable(false);
         JFrame.setDefaultLookAndFeelDecorated(true);
-        panel.setOpaque(true);
         panel.add(rateInMs);
         panel.add(slider);
         panel.add(startAuto);
         panel.add(stopAuto);
+        frame.setJMenuBar(menuBar);
         frame.setContentPane(panel);
         frame.setAlwaysOnTop(true);
-        frame.setPreferredSize(new Dimension(212, 166));
+        frame.setPreferredSize(new Dimension(212, 186));
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -121,6 +180,11 @@ public class AutoClickGui {
         startAuto.setFont(new Font("Times new Roman", Font.PLAIN, 15));
         stopAuto.setFont(new Font("Times new Roman", Font.PLAIN, 15));
         rateInMs.setFont(new Font("Times new Roman", Font.PLAIN, 15));
+        socials.setFont(new Font("Times new Roman", Font.PLAIN, 14));
+        otherProjects.setFont(new Font("Times new Roman", Font.PLAIN, 14));
+        github.setFont(new Font("Times new Roman", Font.PLAIN, 14));
+        twitter.setFont(new Font("Times new Roman", Font.PLAIN, 14));
+        instagram.setFont(new Font("Times new Roman", Font.PLAIN, 14));
     }
 
 
@@ -132,6 +196,17 @@ public class AutoClickGui {
         robot.mouseMove(x, y);
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
+
+    public void openPage(URI url) {
+        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+            try {
+                desktop.browse(url);
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
+        }
     }
 
 
