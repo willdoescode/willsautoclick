@@ -8,3 +8,5 @@ _All code written by William Lane_
 ![Alt text](ss.png?raw=true "Title")
 <br />
 ![Alt text](ss1.png?raw=true "Title")
+![Alt text](ss2.png?raw=true "Title")
+# Clicker is compatible with ALL operating systems
