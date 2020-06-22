@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="autoclicker" options="--add-exports java.desktop/com.apple.eawt=ALL-UNNAMED" />
+      <module name="autoclicker" options="--add-exports java.desktop/com.apple.eawt=ALL-UNNAMED --add-exports java.desktop/com.apple=ALL-UNNAMED" />
     </option>
   </component>
 </project>

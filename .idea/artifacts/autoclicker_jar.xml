@@ -1,10 +1,8 @@
 <component name="ArtifactManager">
-  <artifact name="autoclicker:jar">
+  <artifact type="jar" name="autoclicker:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/autoclicker_jar</output-path>
-    <root id="root">
-      <element id="archive" name="autoclicker.jar">
-        <element id="module-output" name="autoclicker" />
-      </element>
+    <root id="archive" name="autoclicker.jar">
+      <element id="module-output" name="autoclicker" />
     </root>
   </artifact>
 </component>

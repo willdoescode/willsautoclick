@@ -32,9 +32,8 @@ public class Panel extends JPanel {
             @Override
             public void stateChanged(ChangeEvent e) {
                 rate = slider.getValue();
-                if (rate == 0) {
+                if (rate == 0)
                     rate = 1;
-                }
                 rateInMs.setText("Clicks every : " + rate + "ms");
             }
         });
@@ -58,9 +57,8 @@ public class Panel extends JPanel {
                         while (clickerActive) {
                             try {
                                 click();
-                                if (rate == 0) {
+                                if (rate == 0)
                                     rate = 1;
-                                }
                                 TimeUnit.MILLISECONDS.sleep(rate);
                             } catch (Exception e) {
                                 e.printStackTrace();

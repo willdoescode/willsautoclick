@@ -9,4 +9,4 @@ _All code written by William Lane_
 <br />
 ![Alt text](readmeicons/ss1.png?raw=true "Title")
 ![Alt text](readmeicons/ss2.png?raw=true "Title")
-# Clicker is compatible with ALL operating systems
+# Clicker is no longer compatible with windows or linux operating systems do to changes in menubars

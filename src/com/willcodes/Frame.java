@@ -1,7 +1,7 @@
 package com.willcodes;
 
 import javax.swing.*;
-import com.apple.eawt.Application;
+import com.apple.eawt.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Frame extends JFrame {
-    public Frame() throws AWTException {
+    public Frame() throws AWTException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         InitFrame();
     }
 
@@ -22,7 +22,10 @@ public class Frame extends JFrame {
     public final JMenu otherProjects = new JMenu("Projects");
     private final JMenuItem github = new JMenuItem("github");
 
-    private void InitFrame() throws AWTException {
+    private void InitFrame() throws AWTException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+
+        Application myApp = Application.getApplication();
+
 
         otherProjects.add(github);
         menuBar.setBorderPainted(false);
@@ -36,12 +39,12 @@ public class Frame extends JFrame {
         github.setToolTipText("My github");
         menuBar.add(socials);
         menuBar.add(otherProjects);
+        myApp.setDefaultMenuBar(menuBar);
         Listen();
         setTitle("Wills auto clicker");
-        setJMenuBar(menuBar);
         setContentPane(new Panel(socials, otherProjects, github, twitter, instagram));
         setAlwaysOnTop(true);
-        setPreferredSize(new Dimension(212, 186));
+        setPreferredSize(new Dimension(212, 162));
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -49,6 +52,7 @@ public class Frame extends JFrame {
         setVisible(true);
         Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("icons/computer.png")).getImage());
         setIconImage(new ImageIcon(getClass().getResource("icons/computer.png")).getImage());
+
     }
 
     private void Listen() {
