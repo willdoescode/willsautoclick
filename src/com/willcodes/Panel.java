@@ -32,8 +32,9 @@ public class Panel extends JPanel {
             @Override
             public void stateChanged(ChangeEvent e) {
                 rate = slider.getValue();
-                if (rate == 0)
-                    rate = 1;
+                switch (rate) {
+                    case 0 -> rate = 1;
+                }
                 rateInMs.setText("Clicks every : " + rate + "ms");
             }
         });
@@ -56,9 +57,12 @@ public class Panel extends JPanel {
                         threadStarted = true;
                         while (clickerActive) {
                             try {
-                                click();
-                                if (rate == 0)
-                                    rate = 1;
+                                Point b = MouseInfo.getPointerInfo().getLocation();
+                                int x = b.x;
+                                int y = b.y;
+                                robot.mouseMove(x, y);
+                                robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                                robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                                 TimeUnit.MILLISECONDS.sleep(rate);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -118,15 +122,4 @@ public class Panel extends JPanel {
         instagram.setFont(new Font("Times new Roman", Font.PLAIN, 14));
     }
 
-
-
-    private void click() {
-        PointerInfo a = MouseInfo.getPointerInfo();
-        Point b = a.getLocation();
-        int x = (int) b.getX();
-        int y = (int) b.getY();
-        robot.mouseMove(x, y);
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-    }
 }
