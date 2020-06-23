@@ -58,9 +58,7 @@ public class Panel extends JPanel {
                         while (clickerActive) {
                             try {
                                 Point b = MouseInfo.getPointerInfo().getLocation();
-                                int x = b.x;
-                                int y = b.y;
-                                robot.mouseMove(x, y);
+                                robot.mouseMove((int) b.getX(), (int) b.getY());
                                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                                 TimeUnit.MILLISECONDS.sleep(rate);

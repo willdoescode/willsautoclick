@@ -5,7 +5,7 @@ _<a href="https://kohiclicktest.org/clicker-test.html">Test The Clicker</a>_ <br
 _All code written by William Lane_
 <br />
 <br />
-![Alt text](readmeicons/stupid.png?raw=true "Title")
+![Alt text](readmeicons/yay.png?raw=true "Title")
 <br />
 ![Alt text](readmeicons/bob.png?raw=true "Title")
 ![Alt text](readmeicons/ss.png?raw=true "Title")
