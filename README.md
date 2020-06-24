@@ -13,5 +13,4 @@ _All code written by William Lane_
 ![Alt text](readmeicons/ss1.png?raw=true "Title")
 ![Alt text](readmeicons/ss2.png?raw=true "Title")
 <br />
-***Clicker is no longer compatible with windows or linux operating systems do to changes in
-menubars***
+***Added compatibility to Windows 10***

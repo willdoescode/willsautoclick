@@ -1,16 +1,15 @@
 package com.willcodes;
 
 import javax.swing.*;
-import com.apple.eawt.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class Frame extends JFrame {
-    public Frame() throws AWTException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
+
+public class WinFrame extends JFrame {
+    public WinFrame() throws AWTException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         InitFrame();
     }
 
@@ -24,9 +23,6 @@ public class Frame extends JFrame {
 
     private void InitFrame() throws AWTException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
 
-        Application myApp = Application.getApplication();
-
-
         otherProjects.add(github);
         menuBar.setBorderPainted(false);
         socials.setBackground(Color.DARK_GRAY);
@@ -39,44 +35,37 @@ public class Frame extends JFrame {
         github.setToolTipText("My github");
         menuBar.add(socials);
         menuBar.add(otherProjects);
-        myApp.setDefaultMenuBar(menuBar);
+        setJMenuBar(menuBar);
         Listen();
         setTitle("Wills auto clicker");
-        setContentPane(new Panel(socials, otherProjects, github, twitter, instagram, false));
+        setContentPane(new Panel(socials, otherProjects, github, twitter, instagram, true));
         setAlwaysOnTop(true);
-        setPreferredSize(new Dimension(212, 162));
+        setPreferredSize(new Dimension(212, 182));
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        setVisible(true);
-        Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("icons/computer.png")).getImage());
+        setVisible(true);;
         setIconImage(new ImageIcon(getClass().getResource("icons/computer.png")).getImage());
 
     }
 
     private void Listen() {
-        twitter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    URI uri = new URI("https://twitter.com/williamisahuman");
-                    openPage(uri);
-                } catch (URISyntaxException uriSyntaxException) {
-                    uriSyntaxException.printStackTrace();
-                }
+        twitter.addActionListener(e -> {
+            try {
+                URI uri = new URI("https://twitter.com/williamisahuman");
+                openPage(uri);
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
             }
         });
 
-        instagram.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    URI uri = new URI("https://instagram.com/will1amlane");
-                    openPage(uri);
-                } catch (URISyntaxException uriSyntaxException) {
-                    uriSyntaxException.printStackTrace();
-                }
+        instagram.addActionListener(e -> {
+            try {
+                URI uri = new URI("https://instagram.com/will1amlane");
+                openPage(uri);
+            } catch (URISyntaxException uriSyntaxException) {
+                uriSyntaxException.printStackTrace();
             }
         });
 

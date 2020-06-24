@@ -7,8 +7,11 @@ public class InitGui {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
-                System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Hello World!");
-                new Frame();
+                if (System.getProperty("os.name").equals("Mac OS X")) {
+                    new Frame();
+                } else {
+                    new WinFrame();
+                }
             } catch (AWTException | InstantiationException | UnsupportedLookAndFeelException | IllegalAccessException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

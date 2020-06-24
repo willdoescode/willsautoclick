@@ -10,8 +10,8 @@ import java.awt.event.InputEvent;
 import java.util.concurrent.TimeUnit;
 
 public class Panel extends JPanel {
-    public Panel(JMenu socials, JMenu otherProjects, JMenuItem github, JMenuItem twitter, JMenuItem instagram) throws AWTException {
-        InitPanel(socials, otherProjects, github, twitter, instagram);
+    public Panel(JMenu socials, JMenu otherProjects, JMenuItem github, JMenuItem twitter, JMenuItem instagram, boolean isWin) throws AWTException {
+        InitPanel(socials, otherProjects, github, twitter, instagram, isWin);
     }
     private static final int sliderMin = 0;
     private static final int sliderMax = 30;
@@ -40,7 +40,7 @@ public class Panel extends JPanel {
         });
     }
 
-    private void InitPanel(JMenu socials, JMenu otherProjects, JMenuItem github, JMenuItem twitter, JMenuItem instagram) {
+    private void InitPanel(JMenu socials, JMenu otherProjects, JMenuItem github, JMenuItem twitter, JMenuItem instagram, boolean isWin) {
         sliderListener();
         startAuto.addActionListener(new ActionListener() {
             @Override
