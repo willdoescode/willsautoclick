@@ -44,11 +44,12 @@ public class Frame extends JFrame {
         setTitle("Wills auto clicker");
         setContentPane(new Panel(socials, otherProjects, github, twitter, instagram, false));
         setAlwaysOnTop(true);
+        setMinimumSize(new Dimension(212, 162));
         setPreferredSize(new Dimension(212, 162));
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
         Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("icons/computer.png")).getImage());
         setIconImage(new ImageIcon(getClass().getResource("icons/computer.png")).getImage());

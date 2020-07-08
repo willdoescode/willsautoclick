@@ -7,9 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
-public class Panel extends JPanel {
+public class Panel extends JPanel{
     public Panel(JMenu socials, JMenu otherProjects, JMenuItem github, JMenuItem twitter, JMenuItem instagram, boolean isWin) throws AWTException {
         InitPanel(socials, otherProjects, github, twitter, instagram, isWin);
     }
