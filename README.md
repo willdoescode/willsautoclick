@@ -5,7 +5,7 @@
 
 _<a href="https://kohiclicktest.org/clicker-test.html">Test The Clicker</a>_ <br />
 **WARNING THIS AUTO CLICKER CAN CLICK FAST** <br />
-> All code written by William Lane
+_All code written by William Lane_
 <br />
 <br />
 ![Alt text](readmeicons/yay.png?raw=true "Title")
