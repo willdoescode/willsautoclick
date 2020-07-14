@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-# ***Wills Auto Clicker*** <br />
-# <a href="src/com/willcodes/">Source Code</a> <br />
+## ***Wills Auto Clicker*** <br />
+## <a href="src/com/willcodes/">Source Code</a> <br />
+
 _<a href="https://kohiclicktest.org/clicker-test.html">Test The Clicker</a>_ <br />
 **WARNING THIS AUTO CLICKER CAN CLICK FAST** <br />
 _All code written by William Lane_
@@ -16,3 +17,15 @@ _All code written by William Lane_
 ![Alt text](readmeicons/ss2.png?raw=true "Title")
 <br />
 ***Added compatibility to Windows 10***
+
+## Donate
+[![Donate](https://img.shields.io/badge/$-support-ff69b4.svg?style=flat)](https://paypal.me/williamdlane)
+
+## Follow me
+> Twitter [@willdoescode](https://twitter.com/willdoescode)
+```javascript
+if(!you.followme) {
+    you.clickTheLinkAbove()
+    you.followme()
+}
+```
