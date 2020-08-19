@@ -3,7 +3,7 @@
 ## ***Wills Auto Clicker*** <br />
 ## <a href="src/com/willcodes/">Source Code</a> <br />
 
-<a href="out/artifacts/willsautoclicker_jar/">Build</a>
+<a href="https://github.com/willdoescode/willsautoclick/tree/master/out/artifacts/willsautoclick_jar">Build</a>
 
 _<a href="https://kohiclicktest.org/clicker-test.html">Test The Clicker</a>_ <br />
 **WARNING THIS AUTO CLICKER CAN CLICK FAST** <br />
