@@ -3,6 +3,8 @@
 ## ***Wills Auto Clicker*** <br />
 ## <a href="src/com/willcodes/">Source Code</a> <br />
 
+<a href="out/artifacts/willsautoclicker_jar/">Build</a>
+
 _<a href="https://kohiclicktest.org/clicker-test.html">Test The Clicker</a>_ <br />
 **WARNING THIS AUTO CLICKER CAN CLICK FAST** <br />
 _All code written by William Lane_

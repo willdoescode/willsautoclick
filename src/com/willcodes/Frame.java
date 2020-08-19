@@ -61,7 +61,7 @@ public class Frame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    URI uri = new URI("https://twitter.com/williamisahuman");
+                    URI uri = new URI("https://twitter.com/willdoescode");
                     openPage(uri);
                 } catch (URISyntaxException uriSyntaxException) {
                     uriSyntaxException.printStackTrace();
@@ -73,7 +73,7 @@ public class Frame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    URI uri = new URI("https://instagram.com/will1amlane");
+                    URI uri = new URI("https://instagram.com/willdoescode");
                     openPage(uri);
                 } catch (URISyntaxException uriSyntaxException) {
                     uriSyntaxException.printStackTrace();
@@ -85,7 +85,7 @@ public class Frame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    URI uri = new URI("https://github.com/pietales");
+                    URI uri = new URI("https://github.com/willdoescode");
                     openPage(uri);
                 } catch (URISyntaxException uriSyntaxException) {
                     uriSyntaxException.printStackTrace();

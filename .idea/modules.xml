@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/autoclicker.iml" filepath="$PROJECT_DIR$/autoclicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/willsautoclick.iml" filepath="$PROJECT_DIR$/willsautoclick.iml" />
     </modules>
   </component>
 </project>
