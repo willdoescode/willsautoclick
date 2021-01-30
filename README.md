@@ -20,15 +20,3 @@ _All code written by William Lane_
 ![Alt text](readmeicons/ss2.png?raw=true "Title")
 <br />
 ***Added compatibility to Windows 10***
-
-## Donate
-[![Donate](https://img.shields.io/badge/$-support-ff69b4.svg?style=flat)](https://paypal.me/williamdlane)
-
-## Follow me
-> Twitter [@willdoescode](https://twitter.com/willdoescode)
-```javascript
-if(!you.followme) {
-    you.clickTheLinkAbove()
-    you.followme()
-}
-```
